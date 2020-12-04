@@ -1,20 +1,16 @@
-# Reminder+
+# reminder_plus
 
-A flutter application that stores local reminders in SQLite
+A new Flutter project.
 
-## Built With
+## Getting Started
 
-* [Flutter](https://github.com/flutter/flutter) - The app SDK used
-* [flutter_launcher_icons](https://pub.dev/packages/flutter_launcher_icons) - Used for app icon
-* [sqflite](https://pub.dev/packages/sqflite) - Used for sqlite operations
-* [path_provider](https://pub.dev/packages/path_provider) - Used for local filesystem path operations
-* [outline_material_icons](https://pub.dev/packages/outline_material_icons) - Used for the new material outline icons
-* [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) - Used for notification capabilities
+This project is a starting point for a Flutter application.
 
-## Versioning
+A few resources to get you started if this is your first Flutter project:
 
-I use [SemVer](http://semver.org/) for versioning.
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-## Authors
-
-* **Bradley Windybank** - *All work* 
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
