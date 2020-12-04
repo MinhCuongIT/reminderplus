@@ -7,7 +7,6 @@ import 'package:reminder_plus/list.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
@@ -26,30 +25,25 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     homePresenter = new HomePresenter(this);
 
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    new FlutterLocalNotificationsPlugin();
+        new FlutterLocalNotificationsPlugin();
 
     var initializationSettingsAndroid =
-    new AndroidInitializationSettings('app_icon');
+        new AndroidInitializationSettings('app_icon');
 
     var initializationSettingsIOS;
 
     var initializationSettings = new InitializationSettings(
-        initializationSettingsAndroid,
-        initializationSettingsIOS
-    );
+        initializationSettingsAndroid, initializationSettingsIOS);
 
-    flutterLocalNotificationsPlugin.initialize(
-        initializationSettings,
-        onSelectNotification: onSelectNotification
-    );
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
   }
 
   Future onSelectNotification(String payload) {
     debugPrint("payload : $payload");
     showDialog(
       context: context,
-      builder: (_) =>
-      new AlertDialog(
+      builder: (_) => new AlertDialog(
         title: new Text('Notification'),
         content: new Text('$payload'),
       ),
@@ -59,8 +53,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
   showNotification() async {
     var android = new AndroidNotificationDetails(
         'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
-        priority: Priority.High, importance: Importance.Max
-    );
+        priority: Priority.High, importance: Importance.Max);
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android, iOS);
     await flutterLocalNotificationsPlugin.show(
@@ -68,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
         payload: 'Nitish Kumar Singh is part time Youtuber');
   }
 
- /* List<Widget> _buildActions() {
+  /* List<Widget> _buildActions() {
     return <Widget>[
       new IconButton(
         icon: const Icon(
@@ -84,124 +77,84 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
-
         return Container(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              SizedBox(
-                height: (72 * 5).toDouble(),
-                child: Container(
-                  decoration: BoxDecoration(
-                    //color: Colors.white,
+          height: MediaQuery.of(context).size.height * 0.5,
+          child: SingleChildScrollView(
+            child: Column(
+              // physics: NeverScrollableScrollPhysics(),
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    "Categories",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey[800]),
                   ),
-                  child: Stack(
-                    alignment: Alignment(0, 0),
-                    overflow: Overflow.visible,
-                    children: <Widget>[
-                      Positioned(
-                        child: ListView(
-                          physics: NeverScrollableScrollPhysics(),
-                          children: <Widget>[
-                            ListTile(
-                              title: Text(
-                                "Categories",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.grey[800]),
-                              ),
-                              subtitle: Text(
-                                "Coming Soon",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                              leading: Icon(
-                                  OMIcons.folderSpecial,
-                                  color: Colors.pink
-                              ),
-                              onTap: () {},
-
-                            ),
-
-                            ListTile(
-                              title: Text(
-                                "Completed",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.grey[800]),
-                              ),
-                              subtitle: Text(
-                                "Coming Soon",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                              leading: Icon(
-                                  OMIcons.doneAll,
-                                  color: Colors.pink
-                              ),
-                              onTap: () {},
-                            ),
-
-                            ListTile(
-                              title: Text(
-                                "Account",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.grey[800]),
-                              ),
-                              subtitle: Text(
-                                "Coming Soon",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                              leading: Icon(
-                                  OMIcons.accountCircle,
-                                  color: Colors.pink
-                              ),
-                              onTap: () {},
-                            ),
-
-                            ListTile(
-                              title: Text(
-                                "Help",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.grey[800]),
-                              ),
-                              subtitle: Text(
-                                "Coming Soon",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                              leading: Icon(
-                                Icons.help_outline,
-                                  color: Colors.pink
-                              ),
-                              onTap: () {},
-                            ),
-
-                            ListTile(
-                              title: Text(
-                                "Settings",
-                                style: TextStyle(fontWeight: FontWeight.bold,
-                                    color: Colors.grey[800]),
-                              ),
-                              subtitle: Text(
-                                "Coming Soon",
-                                style: TextStyle(fontStyle: FontStyle.italic),
-                              ),
-                              leading: Icon(
-                                OMIcons.settings,
-                                  color: Colors.pink
-                              ),
-                              onTap: () =>
-                                  Navigator.push(context,
-                                    MaterialPageRoute(
-                                      builder: (context) => SettingsPage(),
-                                    ),
-                                  ),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                  subtitle: Text(
+                    "Coming Soon",
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  leading: Icon(OMIcons.folderSpecial, color: Colors.pink),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Completed",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                  ),
+                  subtitle: Text(
+                    "Coming Soon",
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  leading: Icon(OMIcons.doneAll, color: Colors.pink),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Account",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                  ),
+                  subtitle: Text(
+                    "Coming Soon",
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  leading: Icon(OMIcons.accountCircle, color: Colors.pink),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Help",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                  ),
+                  subtitle: Text(
+                    "Coming Soon",
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  leading: Icon(Icons.help_outline, color: Colors.pink),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Settings",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                  ),
+                  subtitle: Text(
+                    "Coming Soon",
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                  leading: Icon(OMIcons.settings, color: Colors.pink),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -216,23 +169,20 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
         // actions: _buildActions(),
         backgroundColor: Colors.white,
       ),
-
       body: new FutureBuilder<List<Reminder>>(
         future: homePresenter.getReminder(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
           var data = snapshot.data;
           return snapshot.hasData
-            ? new ReminderList(data,homePresenter)
-            : new Center(child: new CircularProgressIndicator());
+              ? new ReminderList(data, homePresenter)
+              : new Center(child: new CircularProgressIndicator());
         },
       ),
-
-      floatingActionButtonLocation:
-      FloatingActionButtonLocation.centerDocked,
-
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.push(context,
+        onPressed: () => Navigator.push(
+          context,
           MaterialPageRoute(
             builder: (context) => AddReminderPage(false, null),
           ),
@@ -242,7 +192,6 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
         label: const Text('Add Reminder'),
         elevation: 2,
       ),
-
       bottomNavigationBar: BottomAppBar(
         notchMargin: 4.0,
         child: Row(
@@ -254,10 +203,8 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
               child: IconButton(
                   onPressed: showMenu,
                   icon: Icon(Icons.menu),
-                  color: Colors.grey[700]
-              ),
+                  color: Colors.grey[700]),
             ),
-
             Padding(
               padding: EdgeInsets.only(right: 10.0, top: 5, bottom: 5),
               child: IconButton(
@@ -285,8 +232,10 @@ class _MyHomePageState extends State<MyHomePage> implements HomeContract {
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('This feature will be here in the near future.',
-                  style: TextStyle(fontStyle: FontStyle.italic),),
+                Text(
+                  'This feature will be here in the near future.',
+                  style: TextStyle(fontStyle: FontStyle.italic),
+                ),
               ],
             ),
           ),
